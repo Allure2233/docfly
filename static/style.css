@@ -1,0 +1,194 @@
+/* docfly — minimal doc site styles */
+
+:root {
+  --bg: #fff;
+  --fg: #222;
+  --sidebar-bg: #f6f8fa;
+  --sidebar-width: 260px;
+  --border: #d0d7de;
+  --link: #0969da;
+  --code-bg: #f6f8fa;
+  --empty-fg: #656d76;
+  --accent: #0969da;
+}
+
+[data-theme="dark"] {
+  --bg: #0d1117;
+  --fg: #c9d1d9;
+  --sidebar-bg: #161b22;
+  --border: #30363d;
+  --link: #58a6ff;
+  --code-bg: #161b22;
+  --empty-fg: #8b949e;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  color: var(--fg);
+  background: var(--bg);
+  display: flex;
+  min-height: 100vh;
+  line-height: 1.6;
+  font-size: 15px;
+}
+
+/* ---- theme toggle ---- */
+#theme-toggle {
+  position: fixed;
+  top: 12px;
+  right: 16px;
+  z-index: 100;
+  background: var(--sidebar-bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 4px 8px;
+  color: var(--fg);
+  line-height: 1;
+}
+
+/* ---- sidebar ---- */
+#sidebar {
+  width: var(--sidebar-width);
+  background: var(--sidebar-bg);
+  border-right: 1px solid var(--border);
+  position: fixed;
+  top: 0; left: 0; bottom: 0;
+  overflow-y: auto;
+  padding: 16px 0;
+}
+
+.sidebar-header {
+  padding: 0 20px 16px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 8px;
+}
+
+.brand {
+  font-size: 18px;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--fg);
+}
+
+#sidebar nav ul {
+  list-style: none;
+}
+
+#sidebar nav ul ul {
+  padding-left: 16px;
+}
+
+#sidebar .section {
+  margin-top: 4px;
+}
+
+#sidebar .folder {
+  display: block;
+  padding: 4px 20px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--empty-fg);
+}
+
+#sidebar .page a {
+  display: block;
+  padding: 4px 20px;
+  text-decoration: none;
+  color: var(--fg);
+  border-left: 3px solid transparent;
+  font-size: 14px;
+}
+
+#sidebar .page a:hover { color: var(--link); }
+#sidebar .page a.active {
+  color: var(--link);
+  border-left-color: var(--accent);
+  background: var(--bg);
+}
+
+/* ---- main ---- */
+main {
+  margin-left: var(--sidebar-width);
+  padding: 48px 64px;
+  max-width: 860px;
+  width: 100%;
+}
+
+main > article {
+  max-width: 100%;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 80px 0;
+  color: var(--empty-fg);
+}
+
+.empty-state h1 { font-size: 48px; font-weight: 300; margin-bottom: 12px; }
+.empty-state a { color: var(--link); }
+
+/* ---- content typography ---- */
+article h1 { font-size: 2em; margin: 0.67em 0 .3em; padding-bottom: .3em; border-bottom: 1px solid var(--border); }
+article h2 { font-size: 1.5em; margin: 1em 0 .3em; padding-bottom: .3em; border-bottom: 1px solid var(--border); }
+article h3 { font-size: 1.25em; margin: 1em 0 .3em; }
+article h4 { font-size: 1em; margin: 1em 0 .3em; }
+article p { margin: 0 0 .8em; }
+article a { color: var(--link); }
+article ul, article ol { padding-left: 2em; margin: 0 0 .8em; }
+article li { margin-bottom: .2em; }
+article blockquote {
+  margin: 0 0 .8em;
+  padding: 0 1em;
+  color: var(--empty-fg);
+  border-left: 4px solid var(--border);
+}
+article img { max-width: 100%; }
+article hr { margin: 24px 0; border: 0; border-top: 1px solid var(--border); }
+article table { border-collapse: collapse; margin: 0 0 .8em; width: 100%; }
+article th, article td { border: 1px solid var(--border); padding: 6px 13px; text-align: left; }
+article th { background: var(--sidebar-bg); font-weight: 600; }
+
+/* inline code */
+article code:not(pre code) {
+  background: var(--code-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.9em;
+  border: 1px solid var(--border);
+}
+
+/* ---- prev / next ---- */
+.prev-next {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+
+.prev-next a {
+  text-decoration: none;
+  color: var(--link);
+  font-size: 14px;
+}
+
+/* ---- pygments overrides ---- */
+.highlight { margin: 0 0 .8em; }
+.highlight pre { padding: 16px; border-radius: 6px; overflow-x: auto; }
+.highlighttable { width: 100%; border-collapse: collapse; }
+.highlighttable td { padding: 0; border: 0; }
+.linenos { width: 40px; color: var(--empty-fg); user-select: none; text-align: right; }
+.linenos pre { padding: 16px 8px !important; }
+.highlighttable .code { width: 100%; }
+
+/* ---- response-mode ---- */
+@media (max-width: 768px) {
+  #sidebar { display: none; }
+  main { margin-left: 0; padding: 24px 20px; }
+}

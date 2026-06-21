@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% if page %}{{ page.title }} — {% endif %}docfly</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<button id="theme-toggle" title="Toggle dark/light">☀</button>
+
+<aside id="sidebar">
+  <div class="sidebar-header">
+    <a href="/" class="brand">📘 docfly</a>
+  </div>
+  <nav>
+    {% macro nav_section(section) -%}
+    <ul>
+      {% for s in section.sections %}
+      <li class="section">
+        <span class="folder">{{ s.name }}</span>
+        {{ nav_section(s) }}
+      </li>
+      {% endfor %}
+      {% for p in section.pages %}
+      <li class="page">
+        <a href="{{ p.url }}" {% if active_url and p.url == active_url %}class="active"{% endif %}>{{ p.title }}</a>
+      </li>
+      {% endfor %}
+    </ul>
+    {%- endmacro %}
+    {{ nav_section(tree) }}
+  </nav>
+</aside>
+
+<main>
+  {% if page %}
+    <article>
+      {{ page.content_html | safe }}
+    </article>
+    <footer class="prev-next">
+      {% if prev %}
+      <a href="{{ prev.url }}" class="prev">← {{ prev.title }}</a>
+      {% endif %}
+      {% if next %}
+      <a href="{{ next.url }}" class="next">{{ next.title }} →</a>
+      {% endif %}
+    </footer>
+  {% elif status_code == 404 %}
+    <div class="empty-state">
+      <h1>404</h1>
+      <p>Page not found. <a href="/">Go home</a>.</p>
+    </div>
+  {% else %}
+    <div class="empty-state">
+      <h1>Welcome to docfly</h1>
+      <p>Pick a page from the sidebar.</p>
+    </div>
+  {% endif %}
+</main>
+
+<script>
+// live reload
+(function() {
+  var ws = new WebSocket("ws://" + location.host + "/ws");
+  ws.onmessage = function(e) {
+    if (e.data === "reload") location.reload();
+  };
+})();
+
+// theme toggle
+var toggle = document.getElementById("theme-toggle");
+var html = document.documentElement;
+var saved = localStorage.getItem("docfly-theme") || "light";
+html.setAttribute("data-theme", saved);
+toggle.textContent = saved === "dark" ? "☾" : "☀";
+toggle.onclick = function() {
+  var next = html.getAttribute("data-theme") === "dark" ? "light" : "dark";
+  html.setAttribute("data-theme", next);
+  localStorage.setItem("docfly-theme", next);
+  toggle.textContent = next === "dark" ? "☾" : "☀";
+};
+</script>
+</body>
+</html>
