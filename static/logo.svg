@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" fill="none">
+  <!-- document body -->
+  <rect x="24" y="16" width="72" height="88" rx="6" fill="#0969da" />
+  <!-- document fold -->
+  <path d="M96 16 L96 36 L76 16 Z" fill="#0550ae" />
+  <!-- text lines -->
+  <rect x="36" y="48" width="48" height="4" rx="2" fill="white" opacity="0.7"/>
+  <rect x="36" y="58" width="36" height="4" rx="2" fill="white" opacity="0.5"/>
+  <rect x="36" y="68" width="42" height="4" rx="2" fill="white" opacity="0.5"/>
+  <!-- flight trail -->
+  <path d="M4 120 Q32 100 12 80 Q18 65 36 62 Q54 40 76 48 Q88 30 112 36 Q124 24 126 8"
+        stroke="#0969da" stroke-width="3" stroke-linecap="round" stroke-dasharray="2 8"
+        opacity="0.5"/>
+  <!-- wing accent -->
+  <path d="M64 56 L80 42 Q90 50 84 62 Q76 68 64 56Z" fill="#58a6ff" opacity="0.4"/>
+</svg>
