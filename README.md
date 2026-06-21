@@ -5,7 +5,7 @@
 <h1 align="center">docfly</h1>
 
 <p align="center">
-  <b>One command, a folder of Markdown, and you've got a beautiful doc site with live preview.</b>
+  <b>One command turns a Markdown folder into a beautiful doc site with live preview.</b>
   <br>
   <sub>一条命令，把 Markdown 文件夹变成漂亮的文档站，实时预览。</sub>
 </p>
@@ -15,116 +15,41 @@
   <img src="https://img.shields.io/badge/license-MIT-green" alt="License">
 </p>
 
-<!-- language switch -->
-<div class="lang-tabs" align="center">
-  <input type="radio" id="tab-en" name="lang" checked hidden>
-  <input type="radio" id="tab-zh" name="lang" hidden>
-  <label for="tab-en">English</label>
-  <label for="tab-zh">中文</label>
-
-  <div class="en">
-
 ---
 
-### Why
+## Why / 为什么
 
-You're writing project docs in Markdown. You want to see them rendered nicely — sidebar navigation, code highlighting, dark mode — without configuring MkDocs, Docusaurus, or VitePress. You want to hit save and see the change instantly.
+You're writing project docs in Markdown. You want to see them rendered nicely — sidebar navigation, code highlighting, dark mode — without configuring MkDocs, Docusaurus, or VitePress. You want to hit save and see the change instantly. **`docfly` is that.** No config. No build step. One command.
 
-`docfly` is that. No config. No build step. One command.
+你在用 Markdown 写项目文档。你想看到漂亮的渲染效果 — 但不想要 MkDocs / Docusaurus 那样复杂的配置。你想保存即看。**`docfly` 就是这个。**
 
-### Install
+## Install / 安装
 
 ```bash
 pip install docfly
 ```
 
-### Usage
+## Usage / 使用
 
 ```bash
-docfly ./docs            # Start server on :8080
-docfly ./docs --open     # Auto-open browser
-docfly ./docs -p 3000    # Custom port
-docfly ./docs --no-watch # Disable live reload
+docfly ./docs            # 启动 / Start on :8080
+docfly ./docs --open     # 自动打开浏览器 / Open browser
+docfly ./docs -p 3000    # 自定义端口 / Custom port
+docfly ./docs --no-watch # 关闭实时预览 / No live reload
 ```
 
-### Features
+## Features / 功能
 
-| Feature | Description |
+| Feature 功能 | Description 说明 |
 |---|---|
-| ⚡ **Live reload** | Edit any `.md` file — browser refreshes instantly via WebSocket |
-| 🎨 **Code highlighting** | Pygments with monokai theme, 50+ languages |
-| 🌓 **Dark & light** | One-click toggle, preference saved |
-| 📂 **Nested nav** | Sidebar mirrors your folder structure |
+| ⚡ **Live reload / 实时预览** | Edit `.md` → browser refreshes instantly (WebSocket) |
+| 🎨 **Code highlighting / 代码高亮** | Pygments monokai theme, 50+ languages |
+| 🌓 **Dark & light / 深浅主题** | One-click toggle, preference saved |
+| 📂 **Nested nav / 嵌套导航** | Sidebar mirrors your folder structure |
 | 🏷️ **Front-matter** | `title`, `order` — control display name and sort |
-| 📑 **Permalinks** | Every heading gets an anchor link |
+| 📑 **Permalinks / 标题锚点** | Every heading gets an anchor link |
 
-### Folder Structure
-
-```
-docs/
-├── index.md            → /
-├── getting-started.md  → /getting-started
-└── api/
-    ├── overview.md     → /api/overview
-    └── auth.md         → /api/auth
-```
-
-### Front-matter
-
-```yaml
----
-title: Getting Started
-order: 1
----
-```
-
-### Tech Stack
-
-FastAPI + Jinja2 + WebSocket + watchfiles + Pygments. ~250 lines of core logic.
-
-### License
-
-MIT
-
-  </div><!-- .en -->
-
-  <div class="zh">
-
----
-
-### 为什么用它
-
-你在用 Markdown 写项目文档。你想看到漂亮的渲染效果——侧边栏导航、代码高亮、深色模式——但不想折腾 MkDocs、Docusaurus 或 VitePress。你想保存即看。
-
-`docfly` 就是干这个的。零配置，零构建，一条命令。
-
-### 安装
-
-```bash
-pip install docfly
-```
-
-### 使用
-
-```bash
-docfly ./docs            # 启动服务，默认 8080 端口
-docfly ./docs --open     # 自动打开浏览器
-docfly ./docs -p 3000    # 自定义端口
-docfly ./docs --no-watch # 关闭实时预览
-```
-
-### 功能
-
-| 功能 | 说明 |
-|---|---|
-| ⚡ **实时预览** | 编辑 Markdown 保存 → 浏览器即时刷新（WebSocket） |
-| 🎨 **代码高亮** | Pygments monokai 主题，50+ 语言自动着色 |
-| 🌓 **深色浅色** | 一键切换主题，偏好自动记忆 |
-| 📂 **嵌套导航** | 左侧栏自动按文件夹结构生成目录树 |
-| 🏷️ **Front-matter** | `title`、`order` 控制标题和排序 |
-| 📑 **标题锚点** | 每个标题自动生成可点击的 permalink |
-
-### 目录结构
+## Folder Structure / 目录结构
 
 ```
 docs/
@@ -135,49 +60,19 @@ docs/
     └── auth.md         → /api/auth
 ```
 
-### Front-matter
+## Front-matter
 
 ```yaml
 ---
-title: 快速开始
+title: Getting Started  # or: 快速开始
 order: 1
 ---
 ```
 
-### 技术栈
+## Tech Stack / 技术栈
 
-FastAPI + Jinja2 + WebSocket + watchfiles + Pygments。核心逻辑约 250 行。
+FastAPI + Jinja2 + WebSocket + watchfiles + Pygments. ~250 lines of core logic / 核心逻辑约 250 行。
 
-### 开源协议
+## License / 开源协议
 
 MIT
-
-  </div><!-- .zh -->
-</div><!-- .lang-tabs -->
-
-<style>
-.lang-tabs label {
-  display: inline-block;
-  padding: 6px 20px;
-  margin: 0 2px;
-  border: 1px solid #d0d7de;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 14px;
-  user-select: none;
-  background: #f6f8fa;
-}
-.lang-tabs label:hover { background: #eaeef2; }
-
-.lang-tabs .en, .lang-tabs .zh { display: none; }
-
-#tab-en:checked ~ .en { display: block; }
-#tab-zh:checked ~ .zh { display: block; }
-
-#tab-en:checked ~ label[for="tab-en"],
-#tab-zh:checked ~ label[for="tab-zh"] {
-  background: #0969da;
-  color: white;
-  border-color: #0969da;
-}
-</style>
